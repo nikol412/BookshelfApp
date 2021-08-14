@@ -22,28 +22,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_search, menu)
-
-
-        val searchItem: MenuItem = menu!!.findItem(R.id.action_search)
-        searchItem.expandActionView()
-        val searchView: SearchView = searchItem.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-
-                if (newText.isNotBlank()) {
-                    Toast.makeText(this@MainActivity, "some query", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@MainActivity, "empty text", Toast.LENGTH_SHORT).show()
-                }
-                return true
-            }
-        })
         return true
     }
 }
