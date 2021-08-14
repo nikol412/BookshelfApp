@@ -27,6 +27,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "version"
+
+    productFlavors {
+        create("dev") {
+            dimension = "version"
+            buildConfigField 'String', 'API_URL', '"https://www.googleapis.com/books/v1/"'
+        }
+
+        create("prod") {
+            dimension = "version"
+            buildConfigField 'String', 'API_URL', '"https://www.googleapis.com/books/v1/"'
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
