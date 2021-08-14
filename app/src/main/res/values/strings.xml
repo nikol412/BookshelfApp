@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BookshelfApp</string>
+    <string name="start_placeholder_text">Нужная книга найдется всегда</string>
+    <string name="search">Search</string>
+</resources>
