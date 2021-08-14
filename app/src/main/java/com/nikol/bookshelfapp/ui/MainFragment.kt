@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.nikol.bookshelfapp.R
 import com.nikol.bookshelfapp.databinding.MainFragmentBinding
+import org.koin.android.ext.android.inject
 
 class MainFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel by inject<MainViewModel>()
+
     private lateinit var binding: MainFragmentBinding
 
     override fun onCreateView(
@@ -26,7 +28,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.fetchData()
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
