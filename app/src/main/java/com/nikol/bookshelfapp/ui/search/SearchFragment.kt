@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -93,6 +94,16 @@ class SearchFragment : Fragment() {
                 return true
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_filter -> {
+                findNavController().navigate(R.id.filtersFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun addItemDecoration(recyclerView: RecyclerView) {

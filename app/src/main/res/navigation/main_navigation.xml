@@ -10,4 +10,8 @@
         android:name="com.nikol.bookshelfapp.ui.search.SearchFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" />
+    <fragment
+        android:id="@+id/filtersFragment"
+        android:name="com.nikol.bookshelfapp.ui.filters.FiltersFragment"
+        android:label="FiltersFragment" />
 </navigation>
