@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nikol.bookshelfapp.databinding.ItemBookFilterListBinding
 
+//TODO implement onClick Listener
 class FiltersAdapter : RecyclerView.Adapter<FilterViewHolder>() {
     private var filterList = mutableListOf<BookFilterItem>()
 

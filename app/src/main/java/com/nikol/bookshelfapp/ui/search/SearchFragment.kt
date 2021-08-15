@@ -27,7 +27,7 @@ import org.koin.android.ext.android.inject
 import com.google.android.material.badge.BadgeDrawable
 
 class SearchFragment : Fragment() {
-
+    //TODO Refactor all project
     private val viewModel by inject<SearchViewModel>()
 
     private lateinit var binding: MainFragmentBinding
@@ -74,7 +74,7 @@ class SearchFragment : Fragment() {
 //        badgeDrawable.badgeGravity = TOP_END
 //        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
 //        BadgeUtils.attachBadgeDrawable(badgeDrawable, toolbar, R.id.action_filter)
-
+        //TODO implement badges
         val searchItem: MenuItem = menu.findItem(R.id.action_search)
         searchItem.expandActionView()
         val searchView: SearchView = searchItem.actionView as SearchView

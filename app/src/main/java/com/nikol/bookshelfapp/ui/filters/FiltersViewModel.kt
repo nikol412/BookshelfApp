@@ -5,6 +5,8 @@ import com.nikol.bookshelfapp.ui.filters.adapter.BookFilterItem
 import com.nikol.bookshelfapp.ui.filters.adapter.BooksFilterEnum
 
 class FiltersViewModel : BaseViewModel() {
+    //TODO implement shared viewModel with SearchViewModel, add filterParameter,
+    // while retrieving data, apply this parameter
     val filterList = listOf(
         BookFilterItem("Поиск по всему", BooksFilterEnum.ALL),
         BookFilterItem("Поиск по автору", BooksFilterEnum.AUTHOR),
