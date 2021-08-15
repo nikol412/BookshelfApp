@@ -23,12 +23,13 @@ class MainFragment : Fragment() {
     ): View {
         setHasOptionsMenu(true)
         binding = MainFragmentBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchData()
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -37,12 +38,17 @@ class MainFragment : Fragment() {
         val searchView: SearchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let { q ->
+                    viewModel.fetchData(q)
+
+                }
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
 
                 if (newText.isNotBlank()) {
+                    viewModel.fetchData(newText)
                     Toast.makeText(context, "some query", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "empty text", Toast.LENGTH_SHORT).show()

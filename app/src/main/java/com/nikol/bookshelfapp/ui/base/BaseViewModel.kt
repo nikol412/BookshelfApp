@@ -6,6 +6,7 @@ import org.koin.core.KoinComponent
 
 abstract class BaseViewModel: ViewModel(), KoinComponent {
     protected val compositeDisposable = CompositeDisposable()
+
     override fun onCleared() {
         compositeDisposable.clear()
         super.onCleared()
