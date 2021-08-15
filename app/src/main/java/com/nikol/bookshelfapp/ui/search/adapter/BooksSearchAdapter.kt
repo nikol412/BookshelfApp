@@ -29,20 +29,4 @@ class BooksSearchAdapter : RecyclerView.Adapter<BookViewHolder>() {
     }
 }
 
-class BookViewHolder(private val binding: ItemBooksSearchListBinding) :
-    RecyclerView.ViewHolder(binding.root) {
-
-    fun onBind(book: SearchBookItem) {
-        with(binding) {
-            textViewBookTitle.text = book.title
-            textViewBookAuthors.text = book.authors
-        }
-    }
-}
-
-data class SearchBookItem(
-    val title: String?,
-    val imageUrl: String? = null,
-    val authors: String? = null
-)
 
