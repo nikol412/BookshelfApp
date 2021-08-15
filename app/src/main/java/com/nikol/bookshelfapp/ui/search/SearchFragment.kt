@@ -1,9 +1,13 @@
 package com.nikol.bookshelfapp.ui.search
 
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
+import android.graphics.ColorFilter
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -58,6 +62,11 @@ class SearchFragment : Fragment() {
         val searchItem: MenuItem = menu.findItem(R.id.action_search)
         searchItem.expandActionView()
         val searchView: SearchView = searchItem.actionView as SearchView
+        with(searchView) {
+            queryHint = context.getString(R.string.search_label)
+            setIconifiedByDefault(false)
+            isIconified = false
+        }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.fetchData(query)

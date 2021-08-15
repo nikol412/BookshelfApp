@@ -3,4 +3,5 @@
     <string name="start_placeholder_text">Нужная книга найдется всегда</string>
     <string name="search">Search</string>
     <string name="filter">Filter</string>
+    <string name="search_label">Поиск</string>
 </resources>

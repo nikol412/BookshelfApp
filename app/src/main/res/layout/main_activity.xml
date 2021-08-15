@@ -14,7 +14,8 @@
         android:gravity="start"
         android:layoutDirection="rtl"
         android:theme="@style/toolbar_style"
-        app:menu="@menu/menu_search" />
+        app:menu="@menu/menu_search"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
