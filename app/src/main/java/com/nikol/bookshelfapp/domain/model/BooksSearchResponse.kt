@@ -1,10 +1,17 @@
 package com.nikol.bookshelfapp.domain.model
 
+
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class BooksSearchResponse(
+    @SerializedName("kind")
     @Expose
-    @SerializedName("id")
-    val id: String? = null
+    val kind: String?,
+    @SerializedName("totalItems")
+    @Expose
+    val totalItems: Int?,
+    @SerializedName("items")
+    @Expose
+    val bookItemResponses: List<BookItemResponse>?
 )

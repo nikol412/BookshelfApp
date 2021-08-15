@@ -1,11 +1,10 @@
-package com.nikol.bookshelfapp.domain.repository
+package com.nikol.bookshelfapp.domain.interactor
 
 import com.nikol.bookshelfapp.domain.model.BooksSearchResponse
 import io.reactivex.rxjava3.core.Single
 
-interface BooksService {
-
-    fun searchBooks(
+interface BooksInteractor {
+    fun fetchBooks(
         query: String,
         title: String? = null,
         author: String? = null,
