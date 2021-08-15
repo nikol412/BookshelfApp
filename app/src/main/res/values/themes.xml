@@ -28,7 +28,12 @@
     <style name="text_small_description">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor"></item>
+        <item name="android:textColor">@color/gray_light</item>
     </style>
+
+    <style name="text_small_description.black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 
 </resources>
