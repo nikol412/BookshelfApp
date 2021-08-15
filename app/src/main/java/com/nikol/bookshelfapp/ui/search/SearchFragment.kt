@@ -2,7 +2,6 @@ package com.nikol.bookshelfapp.ui.search
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.nikol.bookshelfapp.R
@@ -10,9 +9,9 @@ import com.nikol.bookshelfapp.databinding.MainFragmentBinding
 import com.nikol.bookshelfapp.ui.search.adapter.BooksSearchAdapter
 import org.koin.android.ext.android.inject
 
-class MainFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private val viewModel by inject<MainViewModel>()
+    private val viewModel by inject<SearchViewModel>()
 
     private lateinit var binding: MainFragmentBinding
 

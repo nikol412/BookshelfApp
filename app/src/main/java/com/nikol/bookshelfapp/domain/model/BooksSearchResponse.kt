@@ -15,3 +15,4 @@ data class BooksSearchResponse(
     @Expose
     val bookItemResponses: List<BookItemResponse>?
 )
+

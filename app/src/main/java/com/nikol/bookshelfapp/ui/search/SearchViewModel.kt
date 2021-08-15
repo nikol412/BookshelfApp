@@ -9,7 +9,7 @@ import com.nikol.bookshelfapp.ui.base.BaseViewModel
 import com.nikol.bookshelfapp.ui.search.adapter.SearchBookItem
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
-class MainViewModel(private val booksInteractor: BooksInteractor) : BaseViewModel() {
+class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewModel() {
 
     val text = MutableLiveData<String>()
     val booksListLD: MutableLiveData<List<SearchBookItem>> = MutableLiveData()

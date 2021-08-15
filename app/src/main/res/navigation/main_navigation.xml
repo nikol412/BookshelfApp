@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.nikol.bookshelfapp.ui.MainFragment"
+        android:name="com.nikol.bookshelfapp.ui.search.SearchFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" />
 </navigation>
