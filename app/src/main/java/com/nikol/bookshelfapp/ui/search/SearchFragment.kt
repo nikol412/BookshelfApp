@@ -1,23 +1,29 @@
 package com.nikol.bookshelfapp.ui.search
 
+import android.annotation.SuppressLint
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
 import android.graphics.ColorFilter
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.badge.BadgeDrawable.TOP_END
+import com.google.android.material.badge.BadgeUtils
 import com.nikol.bookshelfapp.R
 import com.nikol.bookshelfapp.databinding.MainFragmentBinding
 import com.nikol.bookshelfapp.ui.search.adapter.BooksSearchAdapter
 import com.nikol.bookshelfapp.utils.safeLet
 import org.koin.android.ext.android.inject
+import com.google.android.material.badge.BadgeDrawable
 
 class SearchFragment : Fragment() {
 
@@ -58,7 +64,16 @@ class SearchFragment : Fragment() {
         }
     }
 
+    @SuppressLint("UnsafeOptInUsageError")
     override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+
+//        val badgeDrawable = BadgeDrawable.create(requireContext())
+//        badgeDrawable.backgroundColor = Color.MAGENTA
+//        badgeDrawable.badgeGravity = TOP_END
+//        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
+//        BadgeUtils.attachBadgeDrawable(badgeDrawable, toolbar, R.id.action_filter)
+
         val searchItem: MenuItem = menu.findItem(R.id.action_search)
         searchItem.expandActionView()
         val searchView: SearchView = searchItem.actionView as SearchView
