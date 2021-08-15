@@ -11,10 +11,28 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewModel() {
 
-    val text = MutableLiveData<String>()
+    private var currentQuery = ""
     val booksListLD: MutableLiveData<List<SearchBookItem>> = MutableLiveData()
 
+
     fun fetchData(
+        query: String,
+        title: String? = null,
+        author: String? = null,
+        publisher: String? = null,
+        subject: String? = null
+    ) {
+        currentQuery = query
+
+        if (query.isBlank()) {
+            booksListLD.value = emptyList()
+            return
+        }
+        loadBooks(query, title, author, publisher, subject)
+
+    }
+
+    private fun loadBooks(
         query: String,
         title: String? = null,
         author: String? = null,
@@ -27,11 +45,11 @@ class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewMo
                 .doOnSubscribe { isLoading.value = true }
                 .doFinally { isLoading.value = false }
                 .subscribe({ responseBooksList ->
-                    booksListLD.value = responseBooksList
+                    if (currentQuery.isBlank()) booksListLD.value = emptyList()
+                    else booksListLD.value = responseBooksList
                 }, {
                     Log.d("Retrofit", "${it.message}")
                 })
         )
     }
-
 }

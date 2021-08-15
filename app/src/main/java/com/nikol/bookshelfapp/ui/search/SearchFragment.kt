@@ -34,7 +34,14 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+        }
+
         viewModel.booksListLD.observe(viewLifecycleOwner) { booksList ->
+            binding.textViewPlaceholder.visibility =
+                if (booksList.isEmpty()) View.VISIBLE else View.GONE
+
             booksSearchAdapter.setItems(booksList)
         }
     }
@@ -44,19 +51,13 @@ class SearchFragment : Fragment() {
         searchItem.expandActionView()
         val searchView: SearchView = searchItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let { q ->
-                    viewModel.fetchData(q)
-                }
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.fetchData(query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-
-                if (newText.isNotBlank()) {
-                    viewModel.fetchData(newText)
-                }
-
+                viewModel.fetchData(newText)
                 return true
             }
         })

@@ -39,6 +39,7 @@
             tools:listitem="@layout/item_books_search_list" />
 
         <include
+            android:id="@+id/progress_bar"
             layout="@layout/layout_endless_progress_bar"
             android:visibility="gone"
             tools:visibility="invisible" />
