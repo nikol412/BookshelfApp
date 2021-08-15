@@ -24,7 +24,6 @@ class BooksSearchAdapter : RecyclerView.Adapter<BookViewHolder>() {
 
     fun setItems(newItems: List<SearchBookItem>) {
         booksList = newItems.toMutableList()
-
         notifyDataSetChanged()
     }
 }

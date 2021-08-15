@@ -4,4 +4,5 @@
     <string name="search">Search</string>
     <string name="filter">Filter</string>
     <string name="search_label">Поиск</string>
+    <string name="filters_selection_hint_label">Уточните параметры, по которым искать книги</string>
 </resources>
