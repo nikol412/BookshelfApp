@@ -1,14 +1,13 @@
-package com.nikol.bookshelfapp.ui
+package com.nikol.bookshelfapp.ui.search
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.nikol.bookshelfapp.R
 import com.nikol.bookshelfapp.databinding.MainFragmentBinding
+import com.nikol.bookshelfapp.ui.search.adapter.BooksSearchAdapter
 import org.koin.android.ext.android.inject
 
 class MainFragment : Fragment() {
@@ -16,6 +15,10 @@ class MainFragment : Fragment() {
     private val viewModel by inject<MainViewModel>()
 
     private lateinit var binding: MainFragmentBinding
+
+    private val booksSearchAdapter by lazy {
+        BooksSearchAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,11 +28,16 @@ class MainFragment : Fragment() {
         binding = MainFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        binding.recyclerViewBooks.adapter = booksSearchAdapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.booksListLD.observe(viewLifecycleOwner) { booksList ->
+            booksSearchAdapter.setItems(booksList)
+        }
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -40,7 +48,6 @@ class MainFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let { q ->
                     viewModel.fetchData(q)
-
                 }
                 return false
             }
@@ -49,10 +56,8 @@ class MainFragment : Fragment() {
 
                 if (newText.isNotBlank()) {
                     viewModel.fetchData(newText)
-                    Toast.makeText(context, "some query", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(context, "empty text", Toast.LENGTH_SHORT).show()
                 }
+
                 return true
             }
         })
