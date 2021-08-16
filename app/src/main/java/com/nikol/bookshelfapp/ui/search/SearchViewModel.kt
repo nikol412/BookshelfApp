@@ -1,19 +1,36 @@
 package com.nikol.bookshelfapp.ui.search
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nikol.bookshelfapp.domain.interactor.BooksInteractor
-import com.nikol.bookshelfapp.domain.model.BookItemResponse
 import com.nikol.bookshelfapp.ui.base.BaseViewModel
+import com.nikol.bookshelfapp.ui.filters.adapter.BookFilterItem
+import com.nikol.bookshelfapp.ui.filters.adapter.BooksFilterEnum
 import com.nikol.bookshelfapp.ui.search.adapter.SearchBookItem
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewModel() {
 
+    companion object {
+        val filterList = listOf(
+            BookFilterItem("Поиск по всему", BooksFilterEnum.ALL),
+            BookFilterItem("Поиск по автору", BooksFilterEnum.AUTHOR),
+            BookFilterItem("Поиск по названию", BooksFilterEnum.TITLE),
+            BookFilterItem("Поиск по жанру", BooksFilterEnum.SUBJECT),
+            BookFilterItem("Поиск по издателю", BooksFilterEnum.PUBLISHER)
+        )
+    }
+
     private var currentQuery = ""
+    var filterParameter: BooksFilterEnum? = BooksFilterEnum.ALL
+
     val booksListLD: MutableLiveData<List<SearchBookItem>> = MutableLiveData()
 
+    fun getSelectedFilterPosition(): Int? {
+        val filterItem = filterList.find { it.parameter == filterParameter }
+        var index = filterList.indexOf(filterItem)
+        return if (index != -1) index else null
+    }
 
     fun fetchData(
         query: String,
@@ -28,19 +45,13 @@ class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewMo
             booksListLD.value = emptyList()
             return
         }
-        loadBooks(query, title, author, publisher, subject)
-
+        val preparedQuery = filterParameter?.key + ":" + query
+        loadBooks(preparedQuery)
     }
 
-    private fun loadBooks(
-        query: String,
-        title: String? = null,
-        author: String? = null,
-        publisher: String? = null,
-        subject: String? = null
-    ) {
+    private fun loadBooks(query: String) {
         compositeDisposable.add(
-            booksInteractor.fetchBooks(query, title, author, publisher, subject)
+            booksInteractor.searchBooks(query)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { isLoading.value = true }
                 .doFinally { isLoading.value = false }
@@ -52,4 +63,9 @@ class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewMo
                 })
         )
     }
+
+    fun onFilterClick(param: BooksFilterEnum) {
+        filterParameter = param
+    }
+
 }

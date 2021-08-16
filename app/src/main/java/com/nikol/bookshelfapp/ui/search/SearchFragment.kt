@@ -1,34 +1,24 @@
 package com.nikol.bookshelfapp.ui.search
 
 import android.annotation.SuppressLint
-import android.graphics.BlendModeColorFilter
-import android.graphics.Color
-import android.graphics.ColorFilter
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.badge.BadgeDrawable.TOP_END
-import com.google.android.material.badge.BadgeUtils
 import com.nikol.bookshelfapp.R
 import com.nikol.bookshelfapp.databinding.MainFragmentBinding
 import com.nikol.bookshelfapp.ui.search.adapter.BooksSearchAdapter
 import com.nikol.bookshelfapp.utils.safeLet
-import org.koin.android.ext.android.inject
-import com.google.android.material.badge.BadgeDrawable
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SearchFragment : Fragment() {
     //TODO Refactor all project
-    private val viewModel by inject<SearchViewModel>()
+    private val viewModel by sharedViewModel<SearchViewModel>()
 
     private lateinit var binding: MainFragmentBinding
 
@@ -99,6 +89,7 @@ class SearchFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_filter -> {
+                viewModel.booksListLD.value = emptyList()
                 findNavController().navigate(R.id.filtersFragment)
                 true
             }
