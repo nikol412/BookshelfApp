@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:layoutDirection="rtl"
         android:theme="@style/toolbar_style"
         app:menu="@menu/menu_search"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"/>

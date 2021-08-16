@@ -1,9 +1,7 @@
 package com.nikol.bookshelfapp.ui.filters
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.nikol.bookshelfapp.R
 import com.nikol.bookshelfapp.databinding.FragmentFiltersBinding
@@ -31,6 +29,7 @@ class FiltersFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setHasOptionsMenu(true)
         binding = FragmentFiltersBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.recyclerViewFilters.adapter = filtersAdapter
@@ -41,5 +40,11 @@ class FiltersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         filtersAdapter.setItems(SearchViewModel.filterList)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
 
 }

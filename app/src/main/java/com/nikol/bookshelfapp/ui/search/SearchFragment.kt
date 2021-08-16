@@ -58,7 +58,6 @@ class SearchFragment : Fragment() {
     @SuppressLint("UnsafeOptInUsageError")
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
-
 //        val badgeDrawable = BadgeDrawable.create(requireContext())
 //        badgeDrawable.backgroundColor = Color.MAGENTA
 //        badgeDrawable.badgeGravity = TOP_END
