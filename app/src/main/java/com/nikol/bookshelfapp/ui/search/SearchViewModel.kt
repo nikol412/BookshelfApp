@@ -1,6 +1,5 @@
 package com.nikol.bookshelfapp.ui.search
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.nikol.bookshelfapp.domain.interactor.BooksInteractor
 import com.nikol.bookshelfapp.ui.base.BaseViewModel
@@ -22,7 +21,7 @@ class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewMo
     }
 
     var currentQuery = ""
-    private set
+        private set
 
     var filterParameter: BooksFilterEnum? = BooksFilterEnum.ALL
 
@@ -34,13 +33,7 @@ class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewMo
         return if (index != -1) index else null
     }
 
-    fun fetchData(
-        query: String,
-        title: String? = null,
-        author: String? = null,
-        publisher: String? = null,
-        subject: String? = null
-    ) {
+    fun fetchData(query: String) {
         currentQuery = query
 
         if (query.isBlank()) {
@@ -49,6 +42,10 @@ class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewMo
         }
         val preparedQuery = filterParameter?.key + ":" + query
         loadBooks(preparedQuery)
+    }
+
+    fun onFilterClick(param: BooksFilterEnum) {
+        filterParameter = param
     }
 
     private fun loadBooks(query: String) {
@@ -61,13 +58,8 @@ class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewMo
                     if (currentQuery.isBlank()) booksListLD.value = emptyList()
                     else booksListLD.value = responseBooksList
                 }, {
-                    Log.d("Retrofit", "${it.message}")
+                    //ignored now
                 })
         )
     }
-
-    fun onFilterClick(param: BooksFilterEnum) {
-        filterParameter = param
-    }
-
 }

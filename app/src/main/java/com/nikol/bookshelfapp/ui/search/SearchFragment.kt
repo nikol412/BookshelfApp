@@ -17,11 +17,10 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SearchFragment : Fragment() {
     private val viewModel by sharedViewModel<SearchViewModel>()
-    private lateinit var binding: MainFragmentBinding
-
     private val booksSearchAdapter by lazy {
         BooksSearchAdapter()
     }
+    private lateinit var binding: MainFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +28,12 @@ class SearchFragment : Fragment() {
     ): View {
         setHasOptionsMenu(true)
         binding = MainFragmentBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
-        binding.recyclerViewBooks.adapter = booksSearchAdapter
-
-        addItemDecoration(binding.recyclerViewBooks)
+        with(binding) {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = viewModel
+            recyclerViewBooks.adapter = booksSearchAdapter
+            addItemDecoration(this.recyclerViewBooks)
+        }
         return binding.root
     }
 

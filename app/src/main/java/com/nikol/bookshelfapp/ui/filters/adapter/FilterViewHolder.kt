@@ -9,9 +9,7 @@ class FilterViewHolder(private val binding: ItemBookFilterListBinding) :
 
     fun onBind(filterItem: BookFilterItem, isSelect: Boolean, listener: () -> Unit) {
         binding.textViewFilterTitle.text = filterItem.title
-
         binding.imageViewSelected.visibility = if (isSelect) View.VISIBLE else View.INVISIBLE
-
         binding.layoutRoot.setOnClickListener {
             listener.invoke()
         }

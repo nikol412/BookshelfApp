@@ -3,26 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:id="@+id/layout_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
-        android:id="@+id/layout_root"
-        android:orientation="horizontal">
+        android:paddingVertical="12dp">
 
         <TextView
             android:id="@+id/text_view_filter_title"
             style="@style/text_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Поиск по всему"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            tools:text="Поиск по всему" />
 
         <ImageView
             android:id="@+id/image_view_selected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_done"
-            android:layout_weight="0"/>
+            android:layout_weight="0"
+            android:src="@drawable/ic_done" />
     </LinearLayout>
 </layout>

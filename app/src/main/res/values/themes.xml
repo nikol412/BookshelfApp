@@ -1,10 +1,9 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="Theme.BookshelfApp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
 
         <item name="colorOnPrimary">@color/white</item>
-                <item name="colorAccent">@color/white</item>
+        <item name="colorAccent">@color/white</item>
 
         <item name="colorControlNormal">@color/white</item>
 
@@ -16,9 +15,6 @@
         <item name="titleTextAppearance">@style/text_toolbar</item>
 
     </style>
-
-<!--    <style name="toolbar_style">-->
-<!--    </style>-->
 
     <style name="text_toolbar">
         <item name="android:fontFamily">@font/roboto_medium</item>
