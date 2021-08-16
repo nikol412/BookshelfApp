@@ -21,7 +21,9 @@ class SearchViewModel(private val booksInteractor: BooksInteractor) : BaseViewMo
         )
     }
 
-    private var currentQuery = ""
+    var currentQuery = ""
+    private set
+
     var filterParameter: BooksFilterEnum? = BooksFilterEnum.ALL
 
     val booksListLD: MutableLiveData<List<SearchBookItem>> = MutableLiveData()

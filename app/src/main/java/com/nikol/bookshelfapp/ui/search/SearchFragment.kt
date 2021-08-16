@@ -55,23 +55,13 @@ class SearchFragment : Fragment() {
         }
     }
 
-    @SuppressLint("UnsafeOptInUsageError")
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-//        val badgeDrawable = BadgeDrawable.create(requireContext())
-//        badgeDrawable.backgroundColor = Color.MAGENTA
-//        badgeDrawable.badgeGravity = TOP_END
-//        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
-//        BadgeUtils.attachBadgeDrawable(badgeDrawable, toolbar, R.id.action_filter)
-        //TODO implement badges
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
         val searchItem: MenuItem = menu.findItem(R.id.action_search)
         searchItem.expandActionView()
         val searchView: SearchView = searchItem.actionView as SearchView
-        with(searchView) {
-            queryHint = context.getString(R.string.search_label)
-            setIconifiedByDefault(false)
-            isIconified = false
-        }
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.fetchData(query)
@@ -83,12 +73,31 @@ class SearchFragment : Fragment() {
                 return true
             }
         })
+
+        with(searchView) {
+            queryHint = context.getString(R.string.search_label)
+            setIconifiedByDefault(false)
+            isIconified = false
+            setQuery(viewModel.currentQuery, true)
+        }
+    }
+
+    @SuppressLint("UnsafeOptInUsageError")
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+//        val badgeDrawable = BadgeDrawable.create(requireContext())
+//        badgeDrawable.backgroundColor = Color.MAGENTA
+//        badgeDrawable.badgeGravity = TOP_END
+//        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
+//        BadgeUtils.attachBadgeDrawable(badgeDrawable, toolbar, R.id.action_filter)
+        //TODO implement badges
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_filter -> {
-                viewModel.booksListLD.value = emptyList()
+//                viewModel.booksListLD.value = emptyList()
                 findNavController().navigate(R.id.filtersFragment)
                 true
             }

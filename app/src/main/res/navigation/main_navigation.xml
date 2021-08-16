@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.nikol.bookshelfapp.ui.search.SearchFragment"
-        android:label="main_fragment"
+        android:label=""
         tools:layout="@layout/main_fragment" />
     <fragment
         android:id="@+id/filtersFragment"
