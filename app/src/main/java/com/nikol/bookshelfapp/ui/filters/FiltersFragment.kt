@@ -3,6 +3,7 @@ package com.nikol.bookshelfapp.ui.filters
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.nikol.bookshelfapp.R
 import com.nikol.bookshelfapp.databinding.FragmentFiltersBinding
 import com.nikol.bookshelfapp.ui.filters.adapter.BookFilterItem
@@ -21,6 +22,7 @@ class FiltersFragment : Fragment() {
         FiltersAdapter(object: OnFilterClickListener {
             override fun onClick(param: BookFilterItem) {
                 viewModel.onFilterClick(param.parameter)
+                findNavController().navigateUp()
             }
         }, viewModel.getSelectedFilterPosition())
     }

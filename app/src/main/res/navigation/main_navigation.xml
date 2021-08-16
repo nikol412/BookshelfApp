@@ -9,9 +9,18 @@
         android:id="@+id/mainFragment"
         android:name="com.nikol.bookshelfapp.ui.search.SearchFragment"
         android:label=""
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_filtersFragment"
+            app:destination="@id/filtersFragment"
+            app:enterAnim="@anim/slide_left"
+            app:popEnterAnim="@anim/slide_right"
+            app:launchSingleTop="true"
+            />
+    </fragment>
     <fragment
         android:id="@+id/filtersFragment"
         android:name="com.nikol.bookshelfapp.ui.filters.FiltersFragment"
-        android:label="@string/search_parameters_label" />
+        android:label="@string/search_parameters_label" >
+    </fragment>
 </navigation>

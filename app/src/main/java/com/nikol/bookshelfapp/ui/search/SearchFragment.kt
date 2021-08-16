@@ -97,8 +97,7 @@ class SearchFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_filter -> {
-//                viewModel.booksListLD.value = emptyList()
-                findNavController().navigate(R.id.filtersFragment)
+                findNavController().navigate(R.id.action_mainFragment_to_filtersFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

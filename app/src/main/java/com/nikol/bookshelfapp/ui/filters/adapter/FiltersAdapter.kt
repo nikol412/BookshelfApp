@@ -8,7 +8,6 @@ import com.nikol.bookshelfapp.databinding.ItemBookFilterListBinding
 class FiltersAdapter(private val listener: OnFilterClickListener, selectedPosition: Int? = null) :
     RecyclerView.Adapter<FilterViewHolder>() {
     private var filterList = mutableListOf<BookFilterItem>()
-    private var lastSelectedPosition = -1
     private var selectedItemPosition = -1
 
     init {
@@ -33,16 +32,17 @@ class FiltersAdapter(private val listener: OnFilterClickListener, selectedPositi
 
     override fun onBindViewHolder(holder: FilterViewHolder, position: Int) {
         holder.onBind(filterList[position], selectedItemPosition == position) {
-            listener.onClick(filterList[holder.adapterPosition])
 
-            if (lastSelectedPosition != -1) {
-                notifyItemChanged(lastSelectedPosition)
-            }
-            lastSelectedPosition = selectedItemPosition
-            notifyItemChanged(lastSelectedPosition)
+            if (selectedItemPosition == -1 ||
+                selectedItemPosition == holder.adapterPosition
+            ) return@onBind
 
+            val lastSelectedPosition = selectedItemPosition
             selectedItemPosition = holder.adapterPosition
+            notifyItemChanged(lastSelectedPosition)
             notifyItemChanged(selectedItemPosition)
+
+            listener.onClick(filterList[holder.adapterPosition])
         }
     }
 

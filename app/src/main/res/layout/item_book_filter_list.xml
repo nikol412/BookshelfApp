@@ -8,8 +8,7 @@
         android:paddingHorizontal="16dp"
         android:paddingVertical="12dp"
         android:id="@+id/layout_root"
-        android:orientation="horizontal"
-        android:background="?selectableItemBackground">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/text_view_filter_title"
