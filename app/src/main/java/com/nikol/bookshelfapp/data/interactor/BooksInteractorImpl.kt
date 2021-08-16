@@ -13,7 +13,7 @@ class BooksInteractorImpl(private val booksService: BooksService) : BooksInterac
                     SearchBookItem(
                         bookItem.volumeInfo?.title,
                         bookItem.volumeInfo?.imageLinks?.smallThumbnail,
-                        bookItem.volumeInfo?.authors.toString()
+                        bookItem.volumeInfo?.authors?.joinToString(separator = ", ")
                     )
                 }
                 )
