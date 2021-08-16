@@ -1,6 +1,5 @@
 package com.nikol.bookshelfapp.ui.search
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.content.res.AppCompatResources
@@ -17,9 +16,7 @@ import com.nikol.bookshelfapp.utils.safeLet
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SearchFragment : Fragment() {
-    //TODO Refactor all project
     private val viewModel by sharedViewModel<SearchViewModel>()
-
     private lateinit var binding: MainFragmentBinding
 
     private val booksSearchAdapter by lazy {
@@ -82,18 +79,6 @@ class SearchFragment : Fragment() {
         }
     }
 
-    @SuppressLint("UnsafeOptInUsageError")
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-//        val badgeDrawable = BadgeDrawable.create(requireContext())
-//        badgeDrawable.backgroundColor = Color.MAGENTA
-//        badgeDrawable.badgeGravity = TOP_END
-//        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
-//        BadgeUtils.attachBadgeDrawable(badgeDrawable, toolbar, R.id.action_filter)
-        //TODO implement badges
-
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_filter -> {
@@ -115,5 +100,4 @@ class SearchFragment : Fragment() {
             recyclerView.addItemDecoration(itemDecoration)
         }
     }
-
 }

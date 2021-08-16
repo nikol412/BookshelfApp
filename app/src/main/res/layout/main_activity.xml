@@ -12,9 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        android:theme="@style/toolbar_style"
-        app:menu="@menu/menu_search"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+        style="@style/toolbar_style"
+        app:menu="@menu/menu_search" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"

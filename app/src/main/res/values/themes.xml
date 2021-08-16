@@ -12,9 +12,13 @@
         <item name="android:editTextColor">@color/white</item>
     </style>
 
-    <style name="toolbar_style">
+    <style name="toolbar_style" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="titleTextAppearance">@style/text_toolbar</item>
+
     </style>
+
+<!--    <style name="toolbar_style">-->
+<!--    </style>-->
 
     <style name="text_toolbar">
         <item name="android:fontFamily">@font/roboto_medium</item>
